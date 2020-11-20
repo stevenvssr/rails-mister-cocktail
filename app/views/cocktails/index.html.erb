@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+
+
+
+<div class="container mt-4">
+  <div class="cards">
+    <button class="btn btn-dark btn-lg"><%= link_to 'Add a Cocktail', new_cocktail_path %></button>
+    <% @cocktails.each do |cocktail| %>
+      <div class="card-category" style="background-image: url(https://images.unsplash.com/photo-1455621481073-d5bc1c40e3cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60)" >
+        <h5>  <%= cocktail.name %> </h5>
+        <small> <%= link_to 'Show', cocktail %> |
+        <%= link_to 'Delete', cocktail, method: :delete %> </small>
+      </div>
+    <% end %>
+  </div>
+</div>

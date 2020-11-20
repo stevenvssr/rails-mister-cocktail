@@ -1,0 +1,27 @@
+
+<div class="grid-banner">
+<h1><%= @cocktail.name %></h1>
+</div>
+
+<div class="show-grid">
+<div>
+<h3>Description:</h3>
+<p>Delivering zesty lime with fresh mint and a backbone of crystal clear, smooth Captain Morgan® White Rum, the classic Mojito cocktail recipe has all the ingredients for a great party – enjoy it with the crew!</p>
+</div>
+
+<div>
+  <h3>Ingredients</h3>
+  <% @cocktail.doses.each do |dose| %>
+  <ul>
+    <li>
+      <p><%= dose.description %> | <%= dose.ingredient.name %>
+       <%= link_to dose_path(dose),method: :delete do %>
+        <i class="far fa-trash-alt"></i>
+        <% end %>
+      </li>
+    </ul>
+    <% end %>
+</div>
+<button class="btn btn-dark"><%= link_to 'Add ingredients', new_cocktail_dose_path(@cocktail) %></button>
+
+<button class="btn btn-dark"><%= link_to 'Back to cocktails', cocktails_path %></button>
