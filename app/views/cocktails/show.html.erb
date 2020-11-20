@@ -1,6 +1,7 @@
 
-<div class="grid-banner">
+<div class="grid-banner" style="background-image: url(<%= cl_image_path @cocktail.photo.key, height: 300, width: 400, crop: :fill %>)">
 <h1><%= @cocktail.name %></h1>
+
 </div>
 
 <div class="show-grid">
