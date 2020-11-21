@@ -15,12 +15,16 @@
 body {
   background-image: url("https://images.unsplash.com/photo-1603715749723-240c88df18b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
   color: white;
+  top: 0;
 }
 
 .banner {
   background: black;
   display: flex;
   justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .cards {
@@ -120,8 +124,7 @@ grid-gap: 20px;
 }
 
 .grid-banner {
-background-image: url("https://images.unsplash.com/photo-1455621481073-d5bc1c40e3cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60");
-height: 30vh;
+height: 40vh;
 margin-bottom: 30px;
-background-size: cover;
+background-repeat: no-repeat;
 }

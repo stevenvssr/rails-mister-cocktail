@@ -12,10 +12,12 @@
   </head>
 
   <body>
-       <div class="banner">
-      <%= image_tag "logo.png", alt: "Le Wagon", width: 300 %>
-    </div>
 
+       <div class="banner">
+      <%= link_to cocktails_path do %>
+      <%= image_tag "logo.png", alt: "Le Wagon", width: 300 %>
+    <% end %>
+    </div>
     <div class="container">
 
 
