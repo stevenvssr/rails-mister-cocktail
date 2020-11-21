@@ -24,14 +24,7 @@ html_doc.search('.elementor-post').each do |element|
   cocktail = Cocktail.new(name: name)
   cocktail.photo.attach(io: file, filename: "#{cocktail.name}.png", content_type: 'image/png')
   cocktail.save
-
-  p cocktail.name
 end
-
-
-puts "#{Ingredient.count} ingredients created"
-puts "#{Cocktail.count} cocktails created"
-
 
       # image_array = []
       # html_doc.search('.attachment-medium').each do |element|

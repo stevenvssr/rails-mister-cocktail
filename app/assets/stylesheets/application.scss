@@ -30,7 +30,7 @@ body {
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
+  grid-gap: 25px;
 }
 
 .card-category {
@@ -95,6 +95,10 @@ body {
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   position: relative;
 }
+
+.card-category:hover {
+  filter: contrast(200%);
+}
 .card-remove-link {
   color: white;
   border-radius: 50%;
@@ -127,4 +131,20 @@ grid-gap: 20px;
 height: 40vh;
 margin-bottom: 30px;
 background-repeat: no-repeat;
+}
+
+h1 {
+  z-index: 1;
+}
+
+a {
+  color: white;
+  &:hover h5 {
+  color: white;
+  background: black;
+}
+}
+
+.far:hover {
+  color: crimson;
 }

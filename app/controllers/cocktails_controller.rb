@@ -1,5 +1,10 @@
+require 'json'
+require 'open-uri'
+require 'nokogiri'
+
 class CocktailsController < ApplicationController
   before_action :cocktail_find, only: [:show, :edit, :update]
+  helper_method :show_description
 
   # GET /restaurants
   def index
@@ -10,6 +15,13 @@ class CocktailsController < ApplicationController
   def show
   end
 
+  def show_description
+    html_content = "https://www.cocktailicious.nl/#{@cocktail.name.gsub!(" ", "-")}"
+    html_file = open(html_content).read
+    html_doc = Nokogiri::HTML(html_file)
+    search = html_doc.search('.wpurp-recipe-description').text.strip
+    return search
+  end
   # GET /restaurants/new
   def new
     @cocktail = Cocktail.new

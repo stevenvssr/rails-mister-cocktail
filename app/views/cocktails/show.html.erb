@@ -1,4 +1,3 @@
-
 <div class="grid-banner" style="background-image: url(<%= cl_image_path @cocktail.photo.key, height: 300, width: 400, crop: :fill %>)">
 <h1><%= @cocktail.name %></h1>
 
@@ -7,7 +6,9 @@
 <div class="show-grid">
 <div>
 <h3>Description:</h3>
-<p>Delivering zesty lime with fresh mint and a backbone of crystal clear, smooth Captain Morgan® White Rum, the classic Mojito cocktail recipe has all the ingredients for a great party – enjoy it with the crew!</p>
+<p>
+  <%= show_description %>
+  </p>
 </div>
 
 <div>
