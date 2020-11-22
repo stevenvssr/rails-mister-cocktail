@@ -4,7 +4,7 @@ require 'nokogiri'
 
 class CocktailsController < ApplicationController
   before_action :cocktail_find, only: [:show, :edit, :update]
-  helper_method :show_description
+  helper_method :show_description, :show_ingredients
 
   # GET /restaurants
   def index
@@ -22,6 +22,19 @@ class CocktailsController < ApplicationController
     search = html_doc.search('.wpurp-recipe-description').text.strip
     return search
   end
+
+def show_ingredients
+ingredients = []
+html_content = "https://www.cocktailicious.nl/#{@cocktail.name}/"
+html_file = open(html_content).read
+html_doc = Nokogiri::HTML(html_file)
+search = html_doc.search('.wpurp-recipe-ingredient').each do |element|
+ingredients << element.text.strip
+end
+ingredients.uniq!.each do |element|
+  puts element
+end
+end
   # GET /restaurants/new
   def new
     @cocktail = Cocktail.new
