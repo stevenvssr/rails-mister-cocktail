@@ -1,4 +1,4 @@
-<div class="grid-banner" style="background-image: url(<%= cl_image_path @cocktail.photo.key, height: 300, width: 400, crop: :fill %>)">
+<div class="grid-banner" style="background-image: url('<%= @cocktail.image.attached? ? url_for(@cocktail.image) : asset_path("placeholder.jpg") %>')">
   <h1><%= @cocktail.name %></h1>
 </div>
 
@@ -24,7 +24,13 @@
     </ul>
   </div>
 
-  <button class="btn btn-dark"><%= link_to 'Add ingredients', new_cocktail_dose_path(@cocktail) %> <i class="fas fa-plus"></i></button>
+  <button class="btn btn-dark">
+    <%= link_to 'Add ingredients', new_cocktail_dose_path(@cocktail) %> 
+    <i class="fas fa-plus"></i>
+  </button>
 
-  <button class="btn btn-dark"><%= link_to 'Back to cocktails', cocktails_path %> <i class="fas fa-undo-alt"></i></button>
+  <button class="btn btn-dark">
+    <%= link_to 'Back to cocktails', cocktails_path %> 
+    <i class="fas fa-undo-alt"></i>
+  </button>
 </div>

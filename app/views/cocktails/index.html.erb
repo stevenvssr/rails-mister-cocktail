@@ -2,16 +2,19 @@
 
 <div class="container mt-4">
   <div class="cards">
-    <button class="btn btn-dark btn-lg"><%= link_to 'Add a Cocktail', new_cocktail_path %></button>
+    <%= link_to 'Add a Cocktail', new_cocktail_path, class: "btn btn-dark btn-lg mb-3" %>
+
     <% @cocktails.each do |cocktail| %>
-     <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= url_for(cocktail.photo) if cocktail.photo.attached? %>')">
-       <%= link_to cocktail do %>
-        <h5>  <%= cocktail.name%> </h5>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cocktail.image.attached? ? url_for(cocktail.image) : asset_path("placeholder.jpg") %>')">
+        
+        <%= link_to cocktail do %>
+          <h5><%= cocktail.name %></h5>
         <% end %>
 
-        <%= link_to cocktail, method: :delete do%>
-        <small> <i class="far fa-trash-alt"></i>  </small>
+        <%= link_to cocktail, method: :delete, data: { confirm: "Are you sure?" } do %>
+          <small><i class="far fa-trash-alt"></i></small>
         <% end %>
+
       </div>
     <% end %>
   </div>
