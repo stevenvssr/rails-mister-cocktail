@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-    root to: 'cocktails#index'
+  # 1. Set the root (homepage)
+  root to: 'cocktails#index'
+
+  # 2. Define resources for Cocktails, and nest Doses inside them
   resources :cocktails do
-    # Nested!
     resources :doses, only: [:new, :create]
   end
-  resources :doses, only: :destroy
+
+  # 3. Doses destroy action is separate, as it operates on a dose directly
+  resources :doses, only: [:destroy]
 end

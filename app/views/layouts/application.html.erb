@@ -7,26 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
+    
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %> 
   </head>
 
   <body>
-
-
-
-       <div class="banner">
+    <div class="banner">
       <%= link_to cocktails_path do %>
-
-      <%= image_tag "logo.png", alt: "Le Wagon", width: 300 %>
-
-    <% end %>
+        <%= image_tag "logo.png", alt: "Le Wagon", width: 300 %>
+      <% end %>
     </div>
     <div class="container">
-
-
-
-    <%= yield %>
+      <%= yield %>
     </div>
   </body>
 </html>

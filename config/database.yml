@@ -1,12 +1,51 @@
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
+# PostgreSQL. Versions 9.3+ are supported.
+#
+# Install the pg driver:
+#   gem install pg
+#
+# On macOS with Homebrew:
+#   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
+# On Windows:
+#   gem install pg
+#
+# If you use Docker, your username and password will be 'postgres'.
 
 development:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: rails-mister-cocktail_development
 
+  # Explicitly set the username to the current system user for local development
+  # (This assumes the PostgreSQL user is the same as your system user)
+  username: <%= ENV['USER'] %>
+  password:
+
+  # Optional: Uncomment this line if you are using an older version of PostgreSQL
+  # or need to explicitly specify a host.
+  # host: localhost
+
+# Warning: The database defined as "test" will be erased and
+# re-created every time you run your tests.
 test:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: rails-mister-cocktail_test
+
+  # Explicitly set the username for test environment
+  username: <%= ENV['USER'] %>
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+  # Use environment variables for production credentials
+  url: <%= ENV["DATABASE_URL"] %>
+  database: <%= ENV["RAILS_DB_DATABASE"] || "rails-mister-cocktail_production" %>
+  username: <%= ENV["RAILS_DB_USERNAME"] %>
+  password: <%= ENV["RAILS_DB_PASSWORD"] %>

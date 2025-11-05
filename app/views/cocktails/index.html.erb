@@ -1,13 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-
-
-
 <div class="container mt-4">
   <div class="cards">
     <button class="btn btn-dark btn-lg"><%= link_to 'Add a Cocktail', new_cocktail_path %></button>
     <% @cocktails.each do |cocktail| %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path cocktail.photo.key, height: 300, width: 400, crop: :fill  if cocktail.photo.attached?%>')">
+     <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= url_for(cocktail.photo) if cocktail.photo.attached? %>')">
        <%= link_to cocktail do %>
         <h5>  <%= cocktail.name%> </h5>
         <% end %>

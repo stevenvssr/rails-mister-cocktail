@@ -1,35 +1,30 @@
 <div class="grid-banner" style="background-image: url(<%= cl_image_path @cocktail.photo.key, height: 300, width: 400, crop: :fill %>)">
-<h1><%= @cocktail.name %></h1>
-
+  <h1><%= @cocktail.name %></h1>
 </div>
 
 <div class="show-grid">
-<div>
-<h3>Description:</h3>
-<p>
-  <%= show_description %>
+  <div>
+    <h3>Description:</h3>
+    <p>
+      <%= @cocktail.description %>
+    </p>
+  </div>
 
-  </p>
-</div>
-
-<div>
-  <h3>Ingredients</h3>
-  <ul>
-    <% show_ingredients.each do |ingredient| %>
-    <li><%= ingredient %> </li>
-
-  <% end %>
-  <% @cocktail.doses.each do |dose| %>
-
-    <li>
-      <p><%= dose.description %> ~ <%= dose.ingredient.name %>
-       <%= link_to dose_path(dose),method: :delete do %>
-        <i class="far fa-trash-alt"></i>
-        <% end %>
-      </li>
+  <div>
+    <h3>Ingredients</h3>
+    <ul>
+      <% @cocktail.doses.each do |dose| %>
+        <li>
+          <%= dose.description %> ~ <%= dose.ingredient.name %>
+          <%= link_to dose_path(dose), method: :delete do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
-    <% end %>
-</div>
-<button class="btn btn-dark"><%= link_to 'Add ingredients', new_cocktail_dose_path(@cocktail) %> <i class="fas fa-plus"></i></button>
+  </div>
 
-<button class="btn btn-dark"><%= link_to 'Back to cocktails', cocktails_path %> <i class="fas fa-undo-alt"></i></button>
+  <button class="btn btn-dark"><%= link_to 'Add ingredients', new_cocktail_dose_path(@cocktail) %> <i class="fas fa-plus"></i></button>
+
+  <button class="btn btn-dark"><%= link_to 'Back to cocktails', cocktails_path %> <i class="fas fa-undo-alt"></i></button>
+</div>

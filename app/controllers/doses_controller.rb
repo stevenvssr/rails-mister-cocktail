@@ -1,26 +1,27 @@
 class DosesController < ApplicationController
-before_action :set_cocktail, only: [:new, :create]
+  before_action :set_cocktail
 
   def new
     @dose = Dose.new
   end
 
-  # POST /restaurants
   def create
-    @dose = Dose.new(dose_params)
-    @dose.cocktail = @cocktail
+    # FIX: Use ingredient_id submitted by the simple_form association
+    @dose = Dose.new(description: dose_params[:description], 
+                     cocktail: @cocktail, 
+                     ingredient_id: dose_params[:ingredient_id])
+
     if @dose.save
-      redirect_to cocktail_path(@cocktail)
+      redirect_to cocktail_path(@cocktail), notice: 'Dose successfully added.'
     else
       render :new
     end
   end
 
-  # DELETE /restaurants/1
   def destroy
     @dose = Dose.find(params[:id])
     @dose.destroy
-    redirect_to cocktail_path(@dose.cocktail)
+    redirect_to cocktail_path(@cocktail), notice: 'Dose successfully removed.'
   end
 
   private
@@ -30,6 +31,7 @@ before_action :set_cocktail, only: [:new, :create]
   end
 
   def dose_params
-    params.require(:dose).permit(:description, :cocktail_id, :ingredient_id)
+    # FIX: Permitting ingredient_id instead of ingredient_name
+    params.require(:dose).permit(:description, :ingredient_id)
   end
 end
