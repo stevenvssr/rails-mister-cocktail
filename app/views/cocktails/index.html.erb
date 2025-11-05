@@ -1,19 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container mt-4">
-  <div class="cards">
-    <%= link_to 'Add a Cocktail', new_cocktail_path, class: "btn btn-dark btn-lg mb-3" %>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Cocktails</h2>
+    <%= link_to 'Add a Cocktail', new_cocktail_path, class: "btn btn-dark btn-lg" %>
+  </div>
 
+  <div class="cards">
     <% @cocktails.each do |cocktail| %>
       <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cocktail.image.attached? ? url_for(cocktail.image) : asset_path("placeholder.jpg") %>')">
         
         <%= link_to cocktail do %>
-          <h5><%= cocktail.name %></h5>
+          <h5 class="card-title"><%= cocktail.name %></h5>
         <% end %>
 
-        <%= link_to cocktail, method: :delete, data: { confirm: "Are you sure?" } do %>
-          <small><i class="far fa-trash-alt"></i></small>
+        <%= link_to cocktail, method: :delete, data: { confirm: "Are you sure?" }, class: "delete-btn" do %>
+          <i class="far fa-trash-alt"></i>
         <% end %>
+
 
       </div>
     <% end %>
